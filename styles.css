@@ -362,6 +362,58 @@ h1 em {
   line-height: 1.7;
 }
 
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.work-tags span {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #655a59;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.trajectory {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: clamp(20px, 3vw, 44px);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.trajectory div {
+  display: grid;
+  min-height: 112px;
+  align-content: center;
+  gap: 8px;
+  padding: 20px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.trajectory strong {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.trajectory span {
+  color: #756a68;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
 .gallery-section {
   overflow: hidden;
   color: var(--paper-light);
@@ -530,6 +582,119 @@ h1 em {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.team-section {
+  color: var(--paper-light);
+  background: var(--wine-dark);
+  padding: clamp(82px, 9vw, 138px) clamp(22px, 8vw, 130px);
+}
+
+.team-heading {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: end;
+  gap: clamp(40px, 7vw, 110px);
+}
+
+.team-heading h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(52px, 7.2vw, 102px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.88;
+}
+
+.team-heading h2 em {
+  color: var(--rose);
+  font-weight: 400;
+}
+
+.team-heading > p {
+  max-width: 460px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: clamp(52px, 7vw, 90px);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.team-list article {
+  min-height: 132px;
+  padding: 25px;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  transition: color 180ms ease, background 180ms ease;
+}
+
+.team-list article:hover {
+  color: var(--ink);
+  background: var(--acid);
+}
+
+.team-list span {
+  color: var(--rose);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.team-list article:hover span {
+  color: var(--wine);
+}
+
+.team-list h3 {
+  margin: 24px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(25px, 3vw, 38px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.dossier-card {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: clamp(50px, 7vw, 92px);
+  padding: clamp(28px, 4vw, 54px);
+  color: var(--ink);
+  background: var(--paper-light);
+}
+
+.dossier-card .eyebrow {
+  color: var(--wine);
+}
+
+.dossier-card h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 66px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.dossier-card p:last-child {
+  max-width: 620px;
+  margin: 22px 0 0;
+  color: #6f6463;
+  line-height: 1.65;
+}
+
+.dossier-button {
+  flex: 0 0 auto;
+  color: var(--paper-light);
+  background: var(--wine);
 }
 
 .reveal-item {
@@ -1060,6 +1225,80 @@ fieldset {
   margin: 20px 0 0;
 }
 
+.dossier-dialog {
+  width: min(1180px, calc(100% - 32px));
+  height: min(880px, calc(100% - 32px));
+  max-width: none;
+  max-height: none;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  color: var(--paper-light);
+  background: #171213;
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.55);
+}
+
+.dossier-dialog::backdrop {
+  background: rgba(18, 8, 12, 0.86);
+  backdrop-filter: blur(6px);
+}
+
+.dossier-dialog-header {
+  display: flex;
+  min-height: 98px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 20px 26px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.dossier-dialog-header .eyebrow {
+  margin-bottom: 5px;
+  color: var(--rose);
+}
+
+.dossier-dialog-header h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 400;
+}
+
+.dossier-dialog-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dossier-dialog-actions > a {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dossier-dialog .dialog-close {
+  position: static;
+  color: inherit;
+  background: transparent;
+}
+
+.dossier-viewer {
+  height: calc(100% - 98px);
+  background: #2b2526;
+}
+
+.dossier-viewer iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.dossier-fallback {
+  display: none;
+}
+
 footer {
   display: flex;
   align-items: center;
@@ -1103,6 +1342,20 @@ footer > a:not(.brand):hover {
 
   .statement-media {
     min-height: 440px;
+  }
+
+  .trajectory {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-heading {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .dossier-card {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .booking-intro {
@@ -1200,6 +1453,65 @@ footer > a:not(.brand):hover {
 
   .statement-copy > p {
     margin-top: 28px;
+  }
+
+  .trajectory {
+    margin-top: 24px;
+  }
+
+  .trajectory div {
+    min-height: 102px;
+    padding: 16px;
+  }
+
+  .team-list {
+    grid-template-columns: 1fr;
+  }
+
+  .team-list article {
+    min-height: 112px;
+  }
+
+  .dossier-card {
+    padding: 26px 22px;
+  }
+
+  .dossier-button {
+    width: 100%;
+  }
+
+  .dossier-dialog {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+
+  .dossier-dialog-header {
+    min-height: 82px;
+    padding: 15px 18px;
+  }
+
+  .dossier-dialog-actions > a {
+    display: none;
+  }
+
+  .dossier-viewer {
+    height: calc(100% - 126px);
+  }
+
+  .dossier-fallback {
+    display: block;
+    height: 44px;
+    margin: 0;
+    padding: 13px 18px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .dossier-fallback a {
+    color: var(--acid);
+    text-decoration: underline;
   }
 
   .section-heading {

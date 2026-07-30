@@ -107,9 +107,22 @@
         <div class="statement-copy">
           <h2>Hay silencios que esperan décadas para volver a escucharse.</h2>
           <p>
-            La furia del silencio vuelve a escena después de 26 años. Una nueva
-            puesta, otro tiempo y la misma pregunta latiendo debajo de las palabras.
+            Dentro de un colectivo, cuatro figuras atraviesan un viaje donde lo
+            cotidiano se vuelve extraño. Danza, teatro físico y un paisaje sonoro
+            hecho de motores, voces y canciones construyen una experiencia sobre
+            la furia, el silencio y la espiritualidad urbana.
           </p>
+          <div class="work-tags" aria-label="Lenguajes de la obra">
+            <span>Teatro físico</span>
+            <span>Danza contemporánea</span>
+            <span>Universo surrealista</span>
+          </div>
+        </div>
+        <div class="trajectory" aria-label="Trayectoria de la obra">
+          <div><strong>2000</strong><span>Estreno original</span></div>
+          <div><strong>Lima</strong><span>Festival Internacional de Danza</span></div>
+          <div><strong>Neuquén</strong><span>Fiesta Nacional del Teatro</span></div>
+          <div><strong>2026</strong><span>Nueva puesta</span></div>
         </div>
       </section>
 
@@ -198,9 +211,47 @@
         <p class="gallery-hint">Deslizá para recorrer las imágenes →</p>
       </section>
 
+      <section class="team-section" id="equipo">
+        <div class="team-heading">
+          <div>
+            <p class="section-index">03 / El equipo</p>
+            <h2>Quienes hacen<br /><em>el viaje.</em></h2>
+          </div>
+          <p>
+            Una nueva generación de intérpretes retoma la obra estrenada en el
+            año 2000 y vuelve a ponerla en movimiento.
+          </p>
+        </div>
+
+        <div class="team-list" aria-label="Equipo artístico">
+          <article><span>Dirección</span><h3>Mariana Sirote</h3></article>
+          <article><span>Asistencia de dirección</span><h3>Verónica Martínez Durán</h3></article>
+          <article><span>Producción</span><h3>Paula Medori</h3></article>
+          <article><span>Intérprete</span><h3>Fernando Zuber</h3></article>
+          <article><span>Intérprete · Producción</span><h3>Clara Bravo</h3></article>
+          <article><span>Intérprete</span><h3>Valentina Giovannetti</h3></article>
+          <article><span>Intérprete</span><h3>Giuliano Bertoya</h3></article>
+        </div>
+
+        <div class="dossier-card">
+          <div>
+            <p class="eyebrow">Archivo de la obra</p>
+            <h3>Conocé la historia completa.</h3>
+            <p>
+              Sinopsis, propuesta estética, antecedentes y biografías del equipo
+              en el dossier de <em>La furia del silencio</em>.
+            </p>
+          </div>
+          <button class="button dossier-button" id="open-dossier" type="button">
+            Leer el dossier
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </section>
+
       <section class="dates-section" id="funciones">
         <div class="section-heading">
-          <p class="section-index">03 / Funciones</p>
+          <p class="section-index">04 / Funciones</p>
           <h2>Elegí tu noche</h2>
         </div>
 
@@ -223,7 +274,7 @@
 
       <section class="booking-section" id="entradas">
         <div class="booking-intro">
-          <p class="section-index">04 / Entradas</p>
+          <p class="section-index">05 / Entradas</p>
           <h2>Reservá<br />tu lugar</h2>
           <p>
             Completá tus datos y elegí las entradas. Al finalizar te indicaremos
@@ -372,6 +423,45 @@
         Enviar reserva por WhatsApp
         <span aria-hidden="true">→</span>
       </a>
+    </dialog>
+
+    <dialog class="dossier-dialog" id="dossier-dialog">
+      <div class="dossier-dialog-header">
+        <div>
+          <p class="eyebrow">Dossier artístico</p>
+          <h2>La furia del silencio</h2>
+        </div>
+        <div class="dossier-dialog-actions">
+          <a
+            href="./assets/Carpeta-La-Furia-del-Silencio-web.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Pantalla completa ↗
+          </a>
+          <button
+            class="dialog-close"
+            id="dossier-close"
+            type="button"
+            aria-label="Cerrar dossier"
+          >×</button>
+        </div>
+      </div>
+      <div class="dossier-viewer">
+        <iframe
+          src="./assets/Carpeta-La-Furia-del-Silencio-web.pdf#view=FitH&navpanes=0"
+          title="Dossier artístico de La furia del silencio"
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p class="dossier-fallback">
+        Si el visor no aparece en tu dispositivo,
+        <a
+          href="./assets/Carpeta-La-Furia-del-Silencio-web.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >abrí el dossier en pantalla completa</a>.
+      </p>
     </dialog>
 
     <footer>
