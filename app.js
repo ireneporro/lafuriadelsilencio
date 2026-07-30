@@ -27,6 +27,8 @@ const dateSelect = document.querySelector("#show-date");
 const datesGrid = document.querySelector("#dates-grid");
 const totalPrice = document.querySelector("#total-price");
 const ticketCount = document.querySelector("#ticket-count");
+const ticketBreakdown = document.querySelector("#ticket-breakdown");
+const selectedShowSummary = document.querySelector("#selected-show-summary");
 const dialog = document.querySelector("#summary-dialog");
 const summaryData = document.querySelector("#summary-data");
 const submitButton = form.querySelector('button[type="submit"]');
@@ -218,12 +220,17 @@ function selectDate(value) {
   });
   document.querySelector("#entradas").scrollIntoView({ behavior: "smooth" });
   clearError("date");
+  submitError.textContent = "";
+  updateShowSummary();
 }
 
 dateSelect.addEventListener("change", () => {
   document.querySelectorAll(".date-card").forEach((card) => {
     card.classList.toggle("is-selected", card.dataset.date === dateSelect.value);
   });
+  clearError("date");
+  submitError.textContent = "";
+  updateShowSummary();
 });
 
 document.querySelectorAll("[data-counter]").forEach((counter) => {
@@ -262,7 +269,22 @@ function updateTotal() {
     quantities.student * PRICES.student;
 
   ticketCount.textContent = `${count} ${count === 1 ? "entrada" : "entradas"}`;
+  const parts = [];
+  if (quantities.normal) parts.push(`${quantities.normal} general`);
+  if (quantities.retired) parts.push(`${quantities.retired} jubilado/s`);
+  if (quantities.student) parts.push(`${quantities.student} estudiante/s`);
+  ticketBreakdown.textContent =
+    parts.length > 0
+      ? parts.join(" · ")
+      : "Todavía no seleccionaste entradas";
   totalPrice.textContent = currency.format(total);
+}
+
+function updateShowSummary() {
+  const show = SHOWS.find((item) => item.value === dateSelect.value);
+  selectedShowSummary.textContent = show
+    ? `${show.label} · 21:30 h`
+    : "Función sin seleccionar";
 }
 
 function setError(field, message) {
@@ -277,31 +299,50 @@ function validate() {
   const quantities = getQuantities();
   const name = document.querySelector("#name").value.trim();
   const phone = document.querySelector("#phone").value.trim();
-  let valid = true;
+  const issues = [];
+  let firstInvalid = null;
 
   ["date", "tickets", "name", "phone"].forEach(clearError);
+  [dateSelect, document.querySelector("#name"), document.querySelector("#phone")]
+    .forEach((field) => field.removeAttribute("aria-invalid"));
 
   if (!dateSelect.value) {
     setError("date", "Seleccioná una fecha.");
-    valid = false;
+    dateSelect.setAttribute("aria-invalid", "true");
+    issues.push("una función");
+    firstInvalid = firstInvalid || dateSelect;
   }
 
   if (quantities.normal + quantities.retired + quantities.student === 0) {
     setError("tickets", "Agregá al menos una entrada.");
-    valid = false;
+    issues.push("al menos una entrada");
+    firstInvalid =
+      firstInvalid ||
+      document.querySelector('[data-counter] [data-action="increase"]');
   }
 
   if (name.length < 3) {
     setError("name", "Ingresá tu nombre y apellido.");
-    valid = false;
+    document.querySelector("#name").setAttribute("aria-invalid", "true");
+    issues.push("tu nombre y apellido");
+    firstInvalid = firstInvalid || document.querySelector("#name");
   }
 
   if (phone && phone.replace(/\D/g, "").length < 8) {
     setError("phone", "Revisá el número o dejá el campo vacío.");
-    valid = false;
+    document.querySelector("#phone").setAttribute("aria-invalid", "true");
+    issues.push("revisar el WhatsApp opcional");
+    firstInvalid = firstInvalid || document.querySelector("#phone");
   }
 
-  return valid;
+  return {
+    valid: issues.length === 0,
+    firstInvalid,
+    message:
+      issues.length > 0
+        ? `Antes de continuar, falta: ${issues.join(", ")}.`
+        : "",
+  };
 }
 
 function getOrder() {
@@ -394,7 +435,17 @@ async function registerOrder(order) {
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  if (!validate()) return;
+  const validation = validate();
+
+  if (!validation.valid) {
+    submitError.textContent = validation.message;
+    validation.firstInvalid.scrollIntoView({
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+      block: "center",
+    });
+    window.setTimeout(() => validation.firstInvalid.focus(), 450);
+    return;
+  }
 
   const order = getOrder();
   submitError.textContent = "";
@@ -444,4 +495,5 @@ async function loadLiveAvailability() {
 
 renderDates();
 updateTotal();
+updateShowSummary();
 loadLiveAvailability();

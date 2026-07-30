@@ -610,9 +610,20 @@ h1 em {
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  color: inherit;
   background: transparent;
+  font: inherit;
   text-align: left;
   transition: color 180ms ease, background 180ms ease;
+}
+
+.date-card:disabled {
+  cursor: not-allowed;
+  color: #746b69;
+  opacity: 0.6;
 }
 
 .date-card:hover,
@@ -652,9 +663,28 @@ h1 em {
 
 .venue-line {
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 30px;
   padding-top: 24px;
   font-size: 13px;
+}
+
+.venue-link {
+  display: grid;
+  gap: 5px;
+  text-align: right;
+}
+
+.venue-link small {
+  color: #756a68;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.venue-link:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .booking-section {
@@ -913,6 +943,19 @@ fieldset {
   font-size: 11px;
 }
 
+.order-selection small + small {
+  margin-top: 4px;
+}
+
+#selected-show-summary {
+  font-weight: 600;
+}
+
+#ticket-breakdown {
+  max-width: 420px;
+  opacity: 0.7;
+}
+
 .order-total strong {
   font-family: var(--serif);
   font-size: 36px;
@@ -1028,6 +1071,10 @@ footer {
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+footer > a:not(.brand):hover {
+  color: var(--acid);
 }
 
 @media (max-width: 900px) {

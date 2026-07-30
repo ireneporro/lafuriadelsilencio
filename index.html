@@ -208,7 +208,16 @@
 
         <div class="venue-line">
           <span>Todos los sábados</span>
-          <strong>Deriva · 21:30 h</strong>
+          <a
+            class="venue-link"
+            href="https://share.google/ngoc5HNbjZsESRALu"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abrir la ubicación de Deriva Teatro en Google Maps"
+          >
+            <strong>Deriva Teatro · 21:30 h</strong>
+            <small>Sarmiento 841 · Neuquén ↗</small>
+          </a>
         </div>
       </section>
 
@@ -313,9 +322,11 @@
           </div>
 
           <div class="order-total" aria-live="polite">
-            <div>
+            <div class="order-selection">
               <span>Total</span>
               <small id="ticket-count">0 entradas</small>
+              <small id="selected-show-summary">Función sin seleccionar</small>
+              <small id="ticket-breakdown">Todavía no seleccionaste entradas</small>
             </div>
             <strong id="total-price">$0</strong>
           </div>
@@ -366,7 +377,13 @@
     <footer>
       <a class="brand" href="#inicio">LFDS</a>
       <p>La furia del silencio · Reestreno 2026</p>
-      <p>Deriva · Sábados 21:30 h</p>
+      <a
+        href="https://share.google/ngoc5HNbjZsESRALu"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Deriva Teatro · Sarmiento 841 · Neuquén ↗
+      </a>
     </footer>
 
     <script src="./app.js"></script>
