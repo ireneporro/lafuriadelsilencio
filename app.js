@@ -30,7 +30,6 @@ const ticketCount = document.querySelector("#ticket-count");
 const ticketBreakdown = document.querySelector("#ticket-breakdown");
 const selectedShowSummary = document.querySelector("#selected-show-summary");
 const dialog = document.querySelector("#summary-dialog");
-const dossierDialog = document.querySelector("#dossier-dialog");
 const summaryData = document.querySelector("#summary-data");
 const submitButton = form.querySelector('button[type="submit"]');
 const submitLabel = submitButton.querySelector(".submit-label");
@@ -89,7 +88,7 @@ if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
 
 const revealElements = document.querySelectorAll(
   ".statement > *, .gallery-heading > *, .section-heading > *, " +
-    ".team-heading > *, .team-list article, .dossier-card, " +
+    ".team-heading > *, .team-list article, " +
     ".booking-intro > *, .booking-form .form-block, .venue-line"
 );
 
@@ -471,18 +470,6 @@ document.querySelector("#dialog-close").addEventListener("click", () => dialog.c
 
 dialog.addEventListener("click", (event) => {
   if (event.target === dialog) dialog.close();
-});
-
-document
-  .querySelector("#open-dossier")
-  .addEventListener("click", () => dossierDialog.showModal());
-
-document
-  .querySelector("#dossier-close")
-  .addEventListener("click", () => dossierDialog.close());
-
-dossierDialog.addEventListener("click", (event) => {
-  if (event.target === dossierDialog) dossierDialog.close();
 });
 
 async function loadLiveAvailability() {
