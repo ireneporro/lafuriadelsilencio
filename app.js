@@ -14,7 +14,7 @@ const PRICES = {
 };
 
 // Número argentino en formato internacional, sin "+" ni espacios.
-const WHATSAPP_NUMBER = "5493515498977";
+const WHATSAPP_NUMBER = "5492995767458";
 
 const currency = new Intl.NumberFormat("es-AR", {
   style: "currency",
