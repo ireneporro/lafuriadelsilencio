@@ -36,9 +36,23 @@ const submitLabel = submitButton.querySelector(".submit-label");
 const submitError = document.querySelector("#submit-error");
 const isLocalPreview = window.location.protocol === "file:";
 const galleryTrack = document.querySelector("#gallery-track");
+const mainContent = document.querySelector("main");
+const heroSection = document.querySelector("#inicio");
+const datesSection = document.querySelector("#funciones");
+const bookingSection = document.querySelector("#entradas");
+const statementSection = document.querySelector("#obra");
+const contextBridge = document.querySelector("#conocer-mas");
+const purchaseFloat = document.querySelector("#purchase-float");
+const floatingPurchaseLabel = document.querySelector("#floating-purchase-label");
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 );
+
+// La compra aparece inmediatamente después del hero; el contenido artístico
+// continúa debajo como una segunda parte de la experiencia.
+mainContent.insertBefore(datesSection, statementSection);
+mainContent.insertBefore(bookingSection, statementSection);
+mainContent.insertBefore(contextBridge, statementSection);
 
 function moveGallery(direction) {
   galleryTrack.scrollBy({
@@ -89,7 +103,8 @@ if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
 const revealElements = document.querySelectorAll(
   ".statement > *, .gallery-heading > *, .section-heading > *, " +
     ".team-heading > *, .team-list article, " +
-    ".booking-intro > *, .booking-form .form-block, .venue-line"
+    ".booking-intro > *, .booking-form .form-block, .venue-line, " +
+    ".context-bridge > *"
 );
 
 revealElements.forEach((element) => element.classList.add("reveal-item"));
@@ -112,6 +127,39 @@ if (prefersReducedMotion.matches || !("IntersectionObserver" in window)) {
   );
 
   revealElements.forEach((element) => revealObserver.observe(element));
+}
+
+const purchaseFloatVisibility = {
+  hero: true,
+  booking: false,
+};
+
+function updatePurchaseFloatVisibility() {
+  const shouldShow =
+    !purchaseFloatVisibility.hero && !purchaseFloatVisibility.booking;
+  purchaseFloat.classList.toggle("is-visible", shouldShow);
+}
+
+if ("IntersectionObserver" in window) {
+  const purchaseFloatObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.target === heroSection) {
+          purchaseFloatVisibility.hero = entry.isIntersecting;
+        }
+        if (entry.target === bookingSection) {
+          purchaseFloatVisibility.booking = entry.isIntersecting;
+        }
+      });
+      updatePurchaseFloatVisibility();
+    },
+    { threshold: 0.08 }
+  );
+
+  purchaseFloatObserver.observe(heroSection);
+  purchaseFloatObserver.observe(bookingSection);
+} else {
+  purchaseFloat.classList.add("is-visible");
 }
 
 let galleryIsPaused = false;
@@ -279,6 +327,10 @@ function updateTotal() {
       ? parts.join(" · ")
       : "Todavía no seleccionaste entradas";
   totalPrice.textContent = currency.format(total);
+  floatingPurchaseLabel.textContent =
+    count > 0
+      ? `Continuar · ${count} ${count === 1 ? "entrada" : "entradas"} · ${currency.format(total)}`
+      : "Comprar entradas";
 }
 
 function updateShowSummary() {
